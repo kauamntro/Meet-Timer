@@ -123,10 +123,9 @@ function App() {
   return (
     <>
       <Header />
-      <section className='p-2 flex-col'>
-        <section className='p-1 flex-col pt-2'>
-          <h1 className='text-xl text-center text-cyan-500 uppercase font-bold'>Tesouros da Palavra de Deus</h1>
-          <hr />
+      <section className='pb-4 flex flex-col justify-center gap-8'>
+        <section className='p-1 flex-col pt-4'>
+          <h1 className='text-2xl text-center text-cyan-500 font-medium'>Tesouros da Palavra de Deus</h1>
           <Timer 
           title="Comentários iniciais" 
           min={1}
@@ -185,9 +184,8 @@ function App() {
 
 
         </section>
-        <section className='p-1 flex-col pt-2'>
-          <h1 className='text-xl text-center text-amber-500 uppercase font-bold'>Faça seu melhor no ministério</h1>
-          <hr />
+        <section className='p-1 flex-col pt-4'>
+          <h1 className='text-2xl text-center text-amber-500 font-medium'>Faça seu melhor no ministério</h1>
 
           <Timer 
             title="Parte 1"
@@ -252,9 +250,8 @@ function App() {
           
         </section>
 
-        <section className='p-1 flex-col pt-2'>
-          <h1 className='text-xl text-center text-red-500 uppercase font-bold'>Nossa vida cristã</h1>
-          <hr />
+        <section className='p-1 flex-col pt-4'>
+          <h1 className='text-2xl text-center text-red-500 font-medium'>Nossa vida cristã</h1>
 
           <Timer 
             title="Parte 1"
@@ -323,7 +320,7 @@ function App() {
 
         </section>
         <button 
-        className='bg-cyan-500 p-2 text-xl rounded mx-auto mt-4'
+        className='bg-slate-600 p-2 text-xl rounded mx-auto mt-4'
         onClick={copiarRelatório}
         >Copiar relatório</button>
       </section>

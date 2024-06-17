@@ -61,9 +61,9 @@ const Timer = ({ min, title, isComment, timerSeconds, setTimerSeconds, timerMinu
               {formatTime(commentMinutes, commentSeconds)}
             </h1>
             <div className='flex gap-1'>
-              <button onClick={startCommentTimer} className='border p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-green-500 text-xs'>▶</button>
-              <button onClick={stopCommentTimer} className='border p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-red-500 text-xs'>❚❚</button>
-              <button onClick={resetCommentTimer} className='border p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-yellow-500 text-xs'>↪</button>
+              <button onClick={startCommentTimer} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-green-500 text-xs'>▶</button>
+              <button onClick={stopCommentTimer} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-red-500 text-xs'>❚❚</button>
+              <button onClick={resetCommentTimer} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-yellow-500 text-xs'>↪</button>
             </div>
           </div>
         )}
@@ -72,9 +72,9 @@ const Timer = ({ min, title, isComment, timerSeconds, setTimerSeconds, timerMinu
             {formatTime(timerMinutes, timerSeconds)}
           </h1>
           <div className='flex gap-1'>
-            <button onClick={startTimer} className='border border-black p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-green-500 text-sm'>▶</button>
-            <button onClick={stopTimer} className='border border-black p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-red-500 text-sm'>❚❚</button>
-            <button onClick={resetTimer} className='border border-black p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-yellow-500 text-sm'>↪</button>
+            <button onClick={startTimer} className='border border-indigo-100 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-green-500 text-sm'>▶</button>
+            <button onClick={stopTimer} className='border border-indigo-100 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-red-500 text-sm'>❚❚</button>
+            <button onClick={resetTimer} className='border border-indigo-100 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-yellow-500 text-sm'>↪</button>
           </div>
         </div>
       </div>
