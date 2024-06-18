@@ -70,7 +70,7 @@ const Timer2 = ({ presentation, onSave }) => {
           </h1>
           <div className='flex gap-1'>
             <ControlButton onClick={onToggle}>
-              {isActive ? '❚❚' : '▶ Play'}
+              {isActive ? '❚❚' : '▶'}
             </ControlButton>
 
             {(isActive || !!seconds) && (
