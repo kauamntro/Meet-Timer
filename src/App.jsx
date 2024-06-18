@@ -10,10 +10,10 @@ const sections = {
     name: 'Tesouros da Palavra de Deus',
     color: 'text-cyan-500',
     presentations: [
-      { name: 'Comentários iniciais', recommendedTime: '1 minuto' },
-      { name: 'Discurso', recommendedTime: '10 minutos' },
-      { name: 'Joias Espirituais', recommendedTime: '10 minutos' },
-      { name: 'Leitura da Bíblia', recommendedTime: '4 minutos' },
+      { name: 'Comentários iniciais', recommendedTime: 1 * 60 },
+      { name: 'Discurso', recommendedTime: 10 * 60 },
+      { name: 'Joias Espirituais', recommendedTime: 10 * 60 },
+      { name: 'Leitura da Bíblia', recommendedTime: 4 * 60 },
     ]
   },
   MINISTRY: {
@@ -33,8 +33,8 @@ const sections = {
     presentations: [
       { name: 'Discurso 1' },
       { name: 'Discurso 2' },
-      { name: 'Estudo bíblico de congregação', recommendedTime: '30 minutos' },
-      { name: 'Comentários finais e anúncios', recommendedTime: '3 minutos' },
+      { name: 'Estudo bíblico de congregação', recommendedTime: 30 * 60 },
+      { name: 'Comentários finais e anúncios', recommendedTime: 3 * 60 },
     ]
   }
 }

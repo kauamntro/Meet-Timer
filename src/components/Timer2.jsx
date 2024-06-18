@@ -45,9 +45,11 @@ const Timer2 = ({ presentation, onSave }) => {
     <div className='flex p-2 items-center justify-between py-4'>
       <div>
         <h2 className='text-xl'>{presentation.name}</h2>
-        <span className='text-gray-200'>
-          {presentation?.recommendedTime}
-        </span>
+        {!!presentation?.recommendedTime && (
+          <span className='text-gray-200'>
+            {Math.floor(presentation.recommendedTime / 60)} min
+          </span>
+        )}
       </div>
       <div className='flex gap-4 p-1 items-end'>
         {presentation.hasComments && (
@@ -63,7 +65,7 @@ const Timer2 = ({ presentation, onSave }) => {
           </div>
         )}
         <div className='flex flex-col items-center gap-1'>
-          <h1 className={`text-xl font-bold rounded p-1 ${false ? 'bg-amber-600' : ''}`}>
+          <h1 className={`text-xl font-bold rounded p-1 ${seconds > presentation?.recommendedTime ? 'bg-red-600' : 'bg-green-600'}`}>
             {formatTime(seconds)}
           </h1>
           <div className='flex gap-1'>
