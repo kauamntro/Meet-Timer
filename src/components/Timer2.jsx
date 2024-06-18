@@ -56,9 +56,9 @@ const Timer2 = ({ presentation, onSave }) => {
               {formatTime(123)}
             </h1>
             <div className='flex gap-1'>
-              <button onClick={() => null} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-green-500 text-xs'>▶</button>
-              <button onClick={() => null} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-red-500 text-xs'>❚❚</button>
-              <button onClick={() => null} className='border border-amber-500 p-2 rounded bg-black bg-opacity-50 hover:bg-white hover:text-black transition active:bg-yellow-500 text-xs'>↪</button>
+              <ControlButton className='border-amber-500' onClick={() => null}>▶</ControlButton>
+              <ControlButton className='border-amber-500' onClick={() => null}>❚❚</ControlButton>
+              <ControlButton className='border-amber-500' onClick={() => null}>↪</ControlButton>
             </div>
           </div>
         )}
