@@ -18,7 +18,9 @@ const TimerControls = ({ isActive, onToggle, onReset }) => {
       </ControlButton>
 
       <ControlButton onClick={onReset}>
-        <div className='flex items-center'><StopIcon className='size-6' /> Reset</div>
+        <div className='flex items-center'>
+          <StopIcon className='size-6' /> Reset
+        </div>
       </ControlButton>
     </>
   );
