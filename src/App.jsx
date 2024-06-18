@@ -67,7 +67,9 @@ function App() {
       reportText += `${section.name}\n`;
       section.presentations.forEach((presentation) => {
         const time = report[section.id]?.[presentation.name] || '00:00';
-        reportText += `  ${presentation.name}: ${time}\n`;
+        const commentTime = report[section.id]?.[`${presentation.name} - Comentários`] || '00:00';
+        reportText += `  ${presentation.name}: ${time}`;
+        reportText += presentation.hasComments ? `  - Comentários: ${commentTime}\n` : '\n';
       });
       reportText += '\n';
     });
@@ -91,11 +93,21 @@ function App() {
             </h1>
 
             {section.presentations.map((presentation, index) => (
-              <Timer2 
-                key={`${section.id}-presentation-${index}`} 
-                presentation={presentation}
-                onSave={(timer) => saveOnReport(section.id, presentation.name, timer)}
-              />
+              <>
+                <Timer2 
+                  key={`${section.id}-presentation-${index}`} 
+                  presentation={presentation}
+                  onSave={(timer) => saveOnReport(section.id, presentation.name, timer)}
+                />
+                {presentation.hasComments && (
+                  <Timer2 
+                    key={`${section.id}-presentation-${index}-comments`} 
+                    presentation={presentation}
+                    onSave={(timer) => saveOnReport(section.id, `${presentation.name} - Comentários`, timer)}
+                    isComment
+                  />
+                )}
+              </>
             ))}
           </section>
         ))}
@@ -111,34 +123,3 @@ function App() {
 }
 
 export default App
-
-
-  // async function copiarRelatório () {
-  //   const data = new Date()
-  //   const mes = data.getMonth()+1;
-  //   const text = `Relatório de reunião semanal - referente ${data.getDate()}/${mes < 10 ? `0${mes}` : mes}/${data.getFullYear()}
-
-  //     Tesouros da Palavra de Deus
-  //       Comentários iniciais: ${timerMinutesComentariosIniciais}:${timerSecondsComentariosIniciais}
-  //       Discurso: ${timerMinutesDiscurso}:${timerSecondsDiscurso}
-  //       Joias Espirituais: ${timerMinutesJoiasEspirituais}:${timerSecondsJoiasEspirituais}
-  //       Leitura da Bíblia: ${timerMinutesLeituraBiblia}:${timerSecondsLeituraBiblia} - Comentários ${commentMinutesLeituraBiblia}:${commentSecondsLeituraBiblia}
-      
-  //     Faça seu melhor no ministério
-  //       Parte 1: ${timerMinutesParte1}:${timerSecondsParte1} - Comentários ${commentMinutesParte1}:${commentSecondsParte1}
-  //       Parte 2: ${timerMinutesParte2}:${timerSecondsParte2} - Comentários ${commentMinutesParte2}:${commentSecondsParte2}
-  //       Parte 3: ${timerMinutesParte3}:${timerSecondsParte3} - Comentários ${commentMinutesParte3}:${commentSecondsParte3}
-
-  //     Nossa vida cristã
-  //       Discurso 1: ${timerMinutesParte1NVC}:${timerSecondsParte1NVC}
-  //       Discurso 2: ${timerMinutesParte2NVC}:${timerSecondsParte2NVC}
-  //       Estudo bíblico de congregação: ${timerMinutesEstudoCongregacao}:${timerSecondsEstudoCongregacao}
-  //       Comentários finais e anúncios: ${timerMinutesComentariosFinais}:${timerSecondsComentariosFinais}
-  //       `
-  //   try {
-  //     await navigator.clipboard.writeText(text)
-  //     alert("Deu certo 🦾")
-  //   } catch (error) {
-  //     alert("Deu paia 🤐")
-  //   }
-  // }
