@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-constant-condition */
-import ControlButton from './ControlButton';
 import useTimer from '../hooks/useTimer';
 import { formatSeconds } from '../utils/time-format';
+import TimerControls from './TimerControls';
 
 const CommentTimer = ({ presentation, onSave }) => {
   const {
@@ -26,13 +25,11 @@ const CommentTimer = ({ presentation, onSave }) => {
             {formatSeconds(seconds)}
           </h1>
           <div className='flex gap-1'>
-            <ControlButton onClick={onToggle}>
-              {isActive ? '❚❚ Stop' : '▶ Play'}
-            </ControlButton>
-
-            <ControlButton onClick={onReset}>
-              ↪ Reset
-            </ControlButton>
+            <TimerControls 
+              isActive={isActive} 
+              onReset={onReset} 
+              onToggle={onToggle}
+            />
           </div>
         </div>
       </div>
