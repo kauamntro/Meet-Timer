@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import ControlButton from './ControlButton';
 
-const Timer2 = ({ presentation, onSave }) => {
+const Timer2 = ({ presentation, onSave, isComment = false }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -42,40 +42,36 @@ const Timer2 = ({ presentation, onSave }) => {
   };
 
   return (
-    <div className='flex p-2 items-center justify-between py-4'>
+    <div className={`flex p-2 items-center justify-between ${isComment ? 'pl-12 bg-gray-800 py-0 mb-2' : 'bg-gray-900 mt-2'}`}>
       <div>
-        <h2 className='text-xl'>{presentation.name}</h2>
-        <span className='text-gray-200'>
-          {presentation?.recommendedTime}
-        </span>
+        {isComment ? (
+          <h2 className='text-lg'>
+            <small>{presentation.name}</small>
+            {' - Comentários'}
+          </h2>
+        ) : (
+          <h2 className='text-xl'>{presentation.name}</h2>
+        )}
+  
+        {!!presentation?.recommendedTime && (
+          <span className='text-gray-200'>
+            {Math.floor(presentation.recommendedTime / 60)} min
+          </span>
+        )}
       </div>
       <div className='flex gap-4 p-1 items-end'>
-        {presentation.hasComments && (
-          <div className='flex flex-col items-center gap-1'>
-            <h1 className={`text-base font-bold rounded p-1 ${false ? 'bg-amber-600' : ''}`}>
-              {formatTime(123)}
-            </h1>
-            <div className='flex gap-1'>
-              <ControlButton className='border-amber-500' onClick={() => null}>▶</ControlButton>
-              <ControlButton className='border-amber-500' onClick={() => null}>❚❚</ControlButton>
-              <ControlButton className='border-amber-500' onClick={() => null}>↪</ControlButton>
-            </div>
-          </div>
-        )}
         <div className='flex flex-col items-center gap-1'>
-          <h1 className={`text-xl font-bold rounded p-1 ${false ? 'bg-amber-600' : ''}`}>
+          <h1 className={`text-xl w-full text-center font-bold rounded p-1 ${seconds > presentation?.recommendedTime ? 'bg-red-600' : 'bg-green-600'}`}>
             {formatTime(seconds)}
           </h1>
           <div className='flex gap-1'>
             <ControlButton onClick={onToggle}>
-              {isActive ? '❚❚' : '▶ Play'}
+              {isActive ? '❚❚ Stop' : '▶ Play'}
             </ControlButton>
 
-            {(isActive || !!seconds) && (
-              <ControlButton onClick={onReset}>
-                ↪
-              </ControlButton>
-            )}
+            <ControlButton onClick={onReset}>
+              ↪ Reset
+            </ControlButton>
           </div>
         </div>
       </div>
