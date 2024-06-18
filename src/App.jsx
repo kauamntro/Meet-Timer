@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react'
 import './App.css'
 import Header from './components/Header'
-import Timer2 from './components/Timer2'
+import CommentTimer from './components/CommentTimer'
+import PresentationTimer from './components/PresentationTimer'
 
 
 const sections = {
@@ -94,17 +95,16 @@ function App() {
 
             {section.presentations.map((presentation, index) => (
               <>
-                <Timer2 
+                <PresentationTimer 
                   key={`${section.id}-presentation-${index}`} 
                   presentation={presentation}
                   onSave={(timer) => saveOnReport(section.id, presentation.name, timer)}
                 />
                 {presentation.hasComments && (
-                  <Timer2 
+                  <CommentTimer 
                     key={`${section.id}-presentation-${index}-comments`} 
                     presentation={presentation}
                     onSave={(timer) => saveOnReport(section.id, `${presentation.name} - Comentários`, timer)}
-                    isComment
                   />
                 )}
               </>
