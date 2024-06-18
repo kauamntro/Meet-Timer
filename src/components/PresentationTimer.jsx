@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-constant-condition */
-import ControlButton from './ControlButton';
+
 import useTimer from '../hooks/useTimer';
 import { convertSecondsToMinutes, formatSeconds } from '../utils/time-format';
+import TimerControls from './TimerControls';
 
 const PresentationTimer = ({ presentation, onSave }) => {
   const {
@@ -15,7 +15,7 @@ const PresentationTimer = ({ presentation, onSave }) => {
   return (
     <div className='flex p-2 items-center justify-between bg-gray-900 mt-2'>
       <div>
-      <h2 className='text-xl'>{presentation.name}</h2>
+        <h2 className='text-xl'>{presentation.name}</h2>
         {!!presentation?.recommendedTime && (
           <span className='text-gray-200'>
             {convertSecondsToMinutes(presentation.recommendedTime)} min
@@ -28,13 +28,11 @@ const PresentationTimer = ({ presentation, onSave }) => {
             {formatSeconds(seconds)}
           </h1>
           <div className='flex gap-1'>
-            <ControlButton onClick={onToggle}>
-              {isActive ? '❚❚ Stop' : '▶ Play'}
-            </ControlButton>
-
-            <ControlButton onClick={onReset}>
-              ↪ Reset
-            </ControlButton>
+            <TimerControls 
+              isActive={isActive} 
+              onReset={onReset} 
+              onToggle={onToggle}
+            />
           </div>
         </div>
       </div>
