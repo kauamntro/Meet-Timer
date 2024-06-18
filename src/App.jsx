@@ -11,10 +11,10 @@ const sections = {
     name: 'Tesouros da Palavra de Deus',
     color: 'text-cyan-500',
     presentations: [
-      { name: 'Comentários iniciais', recommendedTime: 1 * 60 },
-      { name: 'Discurso', recommendedTime: 10 * 60 },
-      { name: 'Joias Espirituais', recommendedTime: 10 * 60 },
-      { name: 'Leitura da Bíblia', recommendedTime: 4 * 60 },
+      { id: 'treasures-1', name: 'Comentários iniciais', recommendedTime: 1 * 60 },
+      { id: 'treasures-2', name: 'Discurso', recommendedTime: 10 * 60 },
+      { id: 'treasures-3', name: 'Joias Espirituais', recommendedTime: 10 * 60 },
+      { id: 'treasures-4', name: 'Leitura da Bíblia', recommendedTime: 4 * 60 },
     ]
   },
   MINISTRY: {
@@ -22,9 +22,9 @@ const sections = {
     name: 'Tesouros da Palavra de Deus',
     color: 'text-amber-500',
     presentations: [
-      { name: 'Parte 1', hasComments: true },
-      { name: 'Parte 2', hasComments: true },
-      { name: 'Parte 3', hasComments: true },
+      { id: 'ministry-1', name: 'Parte 1', hasComments: true },
+      { id: 'ministry-2', name: 'Parte 2', hasComments: true },
+      { id: 'ministry-3', name: 'Parte 3', hasComments: true },
     ]
   },
   CHRISTIANS: {
@@ -32,15 +32,16 @@ const sections = {
     name: 'Tesouros da Palavra de Deus',
     color: 'text-red-500',
     presentations: [
-      { name: 'Discurso 1' },
-      { name: 'Discurso 2' },
-      { name: 'Estudo bíblico de congregação', recommendedTime: 30 * 60 },
-      { name: 'Comentários finais e anúncios', recommendedTime: 3 * 60 },
+      { id: 'christians-1', name: 'Discurso 1' },
+      { id: 'christians-2', name: 'Discurso 2' },
+      { id: 'christians-3', name: 'Estudo bíblico de congregação', recommendedTime: 30 * 60 },
+      { id: 'christians-4', name: 'Comentários finais e anúncios', recommendedTime: 3 * 60 },
     ]
   }
 }
 
 function App() {
+  // talvez em vez de state voce possa salvar no session-storage
   const [report, setReport] = useState({
     treasures: {},
     ministry: {},
@@ -48,16 +49,17 @@ function App() {
   });
   
   // useCallback é util para manter a referencia da mesma funcao em todos os elementos filhos em vez de recriar uma para cada uma
-  const saveOnReport = useCallback((sectionId, presentationName, timer) => {
+  const saveOnReport = useCallback((sectionId, presentationId, timer) => {
     setReport((prevReport) => ({
       ...prevReport,
       [sectionId]: {
         ...prevReport[sectionId],
-        [presentationName]: timer
+        [presentationId]: timer
       }
     }));
   }, []);
 
+  // se salvar no session-storage, essa função pode fazer parte de um componente GenerateReport 
   const copyReport = async () => {
     const data = new Date();
     const mes = data.getMonth() + 1;
@@ -67,8 +69,8 @@ function App() {
     Object.values(sections).forEach((section) => {
       reportText += `${section.name}\n`;
       section.presentations.forEach((presentation) => {
-        const time = report[section.id]?.[presentation.name] || '00:00';
-        const commentTime = report[section.id]?.[`${presentation.name} - Comentários`] || '00:00';
+        const time = report[section.id]?.[presentation.id] || '00:00';
+        const commentTime = report[section.id]?.[`${presentation.id}-comment`] || '00:00';
         reportText += `  ${presentation.name}: ${time}`;
         reportText += presentation.hasComments ? `  - Comentários: ${commentTime}\n` : '\n';
       });
@@ -98,13 +100,13 @@ function App() {
                 <PresentationTimer 
                   key={`${section.id}-presentation-${index}`} 
                   presentation={presentation}
-                  onSave={(timer) => saveOnReport(section.id, presentation.name, timer)}
+                  onSave={(timer) => saveOnReport(section.id, presentation.id, timer)}
                 />
                 {presentation.hasComments && (
                   <CommentTimer 
                     key={`${section.id}-presentation-${index}-comments`} 
                     presentation={presentation}
-                    onSave={(timer) => saveOnReport(section.id, `${presentation.name} - Comentários`, timer)}
+                    onSave={(timer) => saveOnReport(section.id, `${presentation.id}-comment`, timer)}
                   />
                 )}
               </>
