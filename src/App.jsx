@@ -66,6 +66,7 @@ function App() {
     const formattedDate = `${data.getDate()}/${mes < 10 ? `0${mes}` : mes}/${data.getFullYear()}`;
     let reportText = `Relatório de reunião semanal - referente ${formattedDate}\n\n`;
 
+
     Object.values(sections).forEach((section) => {
       reportText += `${section.name}\n`;
       section.presentations.forEach((presentation) => {
@@ -76,6 +77,8 @@ function App() {
       });
       reportText += '\n';
     });
+
+    reportText += 'Relatório feito usando: https://cronometromeet.netlify.app'
 
     try {
       await navigator.clipboard.writeText(reportText);
