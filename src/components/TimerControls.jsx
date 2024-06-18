@@ -6,10 +6,15 @@ const TimerControls = ({ isActive, onToggle, onReset }) => {
   return (
     <>
       <ControlButton onClick={onToggle}>
-        {isActive 
-          ? <div className='flex items-center'><PauseIcon className='size-6' /> Pause</div> 
-          : <div className='flex items-center'><PlayIcon className='size-6' /> Play</div>
-        }
+        {isActive ? (
+          <div className='flex items-center'>
+            <PauseIcon className='size-6' /> Pause
+          </div> 
+        ) : (
+          <div className='flex items-center'>
+            <PlayIcon className='size-6' /> Play
+          </div>
+        )}
       </ControlButton>
 
       <ControlButton onClick={onReset}>
