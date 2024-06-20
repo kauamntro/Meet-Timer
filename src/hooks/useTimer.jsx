@@ -9,19 +9,14 @@ const useTimer = (onSave) => {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
+        setSeconds((prev) => prev + 1);
       }, 1000);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isActive, seconds]);
-
-  useEffect(() => {
-    if (!isActive && seconds > 0) {
       onSave(formatSeconds(seconds));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, seconds]);
 
   const onToggle = () => {
