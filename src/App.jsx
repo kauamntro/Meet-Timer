@@ -19,7 +19,7 @@ const sections = {
   },
   MINISTRY: {
     id: 'ministry',
-    name: 'Tesouros da Palavra de Deus',
+    name: 'Faça seu melhor no ministério',
     color: 'text-amber-500',
     presentations: [
       { id: 'ministry-1', name: 'Parte 1', hasComments: true },
@@ -29,7 +29,7 @@ const sections = {
   },
   CHRISTIANS: {
     id: 'christians',
-    name: 'Tesouros da Palavra de Deus',
+    name: 'Nossa vida cristã',
     color: 'text-red-500',
     presentations: [
       { id: 'christians-1', name: 'Discurso 1' },
@@ -66,6 +66,7 @@ function App() {
     const formattedDate = `${data.getDate()}/${mes < 10 ? `0${mes}` : mes}/${data.getFullYear()}`;
     let reportText = `Relatório de reunião semanal - referente ${formattedDate}\n\n`;
 
+
     Object.values(sections).forEach((section) => {
       reportText += `${section.name}\n`;
       section.presentations.forEach((presentation) => {
@@ -77,11 +78,13 @@ function App() {
       reportText += '\n';
     });
 
+    reportText += 'Relatório feito usando: https://cronometromeet.netlify.app'
+
     try {
       await navigator.clipboard.writeText(reportText);
-      alert("Deu certo 🦾");
+      alert("Relatório copiado");
     } catch (error) {
-      alert("Deu paia 🤐");
+      alert("Algum erro ocorreu, reporte usando o código:"+error);
     }
   };
 
